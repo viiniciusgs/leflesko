@@ -6,10 +6,4 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  h1 {
-    font-size: ${({ theme }) => theme.fonts.sizes.lg};
-    font-weight: ${({ theme }) => theme.fonts.weights.bold};
-    color: ${({ theme }) => theme.colors.text};
-  }
 `
