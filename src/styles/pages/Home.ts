@@ -8,7 +8,8 @@ export const Container = styled.div`
   justify-content: center;
 
   h1 {
-    font-size: 5.4rem;
-    color: ${({ theme }) => theme.colors.primary};
+    font-size: ${({ theme }) => theme.fonts.sizes.lg};
+    font-weight: ${({ theme }) => theme.fonts.weights.bold};
+    color: ${({ theme }) => theme.colors.text};
   }
 `

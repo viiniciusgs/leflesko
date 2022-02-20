@@ -7,13 +7,9 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
 
-  html {
-    font-size: 62.5%;
-  }
-
   body {
     background: ${({ theme }) => theme.colors.background};
     color: ${({ theme }) => theme.colors.text};
-    font: 400 1.6rem Roboto, sans-serif;
+    font: 400 1rem Oswald, sans-serif;
   }
 `
