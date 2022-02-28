@@ -1,7 +1,8 @@
 import React from 'react'
 import Head from 'next/head'
 
-import { Header } from '../styles/components/Header'
+import Header from '../components/Header'
+
 import { Container } from '../styles/pages/Home'
 
 export default function Home() {
@@ -11,11 +12,9 @@ export default function Home() {
         <title>Leflesko</title>
       </Head>
 
-      <Header>
-        <h1>Leflesko</h1>
-      </Header>
-
       <Container>
+        <Header />
+
         <h2>My page</h2>
       </Container>
     </>
