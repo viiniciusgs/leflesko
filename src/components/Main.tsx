@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 
-import { Container, Row, Letter } from '../styles/components/Main'
+import Row from './Row'
+
+import { Container, Letter } from '../styles/components/Main'
 
 interface Word {
   letter: string

@@ -8,11 +8,6 @@ export const Container = styled.main`
   flex: 1;
 `
 
-export const Row = styled.div`
-  display: flex;
-  gap: ${({ theme }) => theme.spacings.md};
-`
-
 export const Letter = styled.div`
   width: 3.5rem;
   height: 3.5rem;
