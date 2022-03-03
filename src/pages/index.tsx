@@ -7,6 +7,8 @@ import Keyboard from '../components/Keyboard'
 
 import { Container } from '../styles/pages/Home'
 
+const mock = 'teste'
+
 export default function Home() {
   return (
     <>
@@ -17,9 +19,9 @@ export default function Home() {
       <Container>
         <Header />
 
-        <Main />
+        <Main wordOfDay={mock} />
 
-        <Keyboard />
+        <Keyboard wordOfDay={mock} />
       </Container>
     </>
   )

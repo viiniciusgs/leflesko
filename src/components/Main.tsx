@@ -3,12 +3,11 @@ import React, { useEffect } from 'react'
 import Row from './Row'
 
 import { useWord } from '../hooks/useWord'
+import { useWordOfDay } from '../hooks/useWordOfDay'
 
 import { Container, Letter } from '../styles/components/Main'
 
-const mock = 'teste'
-
-export default function Main() {
+export default function Main({ wordOfDay }: { wordOfDay: string }) {
   const {
     word,
     handleSetWord,
@@ -18,43 +17,24 @@ export default function Main() {
     handleSetFinished,
   } = useWord()
 
-  const correctWordSplit = mock.toLowerCase().split('')
+  const { handleCorrectWordSplit, handleCorrectWordArrayOfObject } =
+    useWordOfDay()
 
-  const correctWord = [
-    {
-      letter: correctWordSplit[0],
-      success: false,
-      alert: false,
-    },
-    {
-      letter: correctWordSplit[1],
-      success: false,
-      alert: false,
-    },
-    {
-      letter: correctWordSplit[2],
-      success: false,
-      alert: false,
-    },
-    {
-      letter: correctWordSplit[3],
-      success: false,
-      alert: false,
-    },
-    {
-      letter: correctWordSplit[4],
-      success: false,
-      alert: false,
-    },
-  ]
+  const correctWordSplit = handleCorrectWordSplit(wordOfDay)
+
+  const correctWordArrayOfObject =
+    handleCorrectWordArrayOfObject(correctWordSplit)
 
   const handleSubmit = () => {
     if (word && word[index].length === 5) {
       for (let i = 0; i <= word[index].length - 1; i++) {
         for (let j = 0; j <= word[index].length - 1; j++) {
-          if (word[index][i].letter === correctWord[j].letter && i === j) {
+          if (
+            word[index][i].letter === correctWordArrayOfObject[j].letter &&
+            i === j
+          ) {
             word[index][i].success = true
-            correctWord[j].success = true
+            correctWordArrayOfObject[j].success = true
           } else {
             word[index][i].error = true
           }
@@ -64,14 +44,14 @@ export default function Main() {
       for (let i = 0; i <= word[index].length - 1; i++) {
         for (let j = 0; j <= word[index].length - 1; j++) {
           if (
-            word[index][i].letter === correctWord[j].letter &&
-            !correctWord[j].success &&
-            !correctWord[j].alert &&
+            word[index][i].letter === correctWordArrayOfObject[j].letter &&
+            !correctWordArrayOfObject[j].success &&
+            !correctWordArrayOfObject[j].alert &&
             !word[index][i].success &&
             !word[index][i].alert
           ) {
             word[index][i].alert = true
-            correctWord[j].alert = true
+            correctWordArrayOfObject[j].alert = true
           } else {
             word[index][i].error = true
           }
@@ -85,7 +65,7 @@ export default function Main() {
         word[index][3].letter +
         word[index][4].letter
 
-      if (wordInString === mock) {
+      if (wordInString === wordOfDay) {
         console.log('palavra correta')
         handleSetFinished(true)
       } else if (index < 5) {
