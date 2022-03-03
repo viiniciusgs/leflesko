@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 
 import Row from './Row'
 
-import { Container, Letter } from '../styles/components/Main'
+import { useWord } from '../hooks/useWord'
 
-interface Word {
-  letter: string
-  success: boolean
-  alert: boolean
-  error: boolean
-}
+import { Container, Letter } from '../styles/components/Main'
 
 const mock = 'teste'
 
 export default function Main() {
-  const [word, setWord] = useState<Word[][]>()
-  const [index, setIndex] = useState<number>(0)
-  const [finished, setFinished] = useState<boolean>(false)
+  const {
+    word,
+    handleSetWord,
+    index,
+    handleSetIndex,
+    finished,
+    handleSetFinished,
+  } = useWord()
 
   const correctWordSplit = mock.toLowerCase().split('')
 
@@ -87,12 +87,12 @@ export default function Main() {
 
       if (wordInString === mock) {
         console.log('palavra correta')
-        setFinished(true)
+        handleSetFinished(true)
       } else if (index < 5) {
-        setIndex(index + 1)
+        handleSetIndex(index + 1)
       } else {
         console.log('palavra incorreta')
-        setFinished(true)
+        handleSetFinished(true)
       }
     }
   }
@@ -106,7 +106,7 @@ export default function Main() {
 
     if (keyCode >= 65 && keyCode <= 90) {
       if (!word) {
-        setWord([
+        handleSetWord([
           [
             {
               letter: key,
@@ -117,7 +117,7 @@ export default function Main() {
           ],
         ])
       } else if (!word[index] && word.length < 6) {
-        setWord([
+        handleSetWord([
           ...word,
           [
             {
@@ -136,10 +136,10 @@ export default function Main() {
           error: false,
         })
 
-        setWord([...word])
+        handleSetWord([...word])
       }
     } else if (keyCode === 8 && word && word[index] && word[index][0]) {
-      setWord(word.slice(0, index).concat([word[index].slice(0, -1)]))
+      handleSetWord(word.slice(0, index).concat([word[index].slice(0, -1)]))
     } else if (keyCode === 13) {
       handleSubmit()
     }
