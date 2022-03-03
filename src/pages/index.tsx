@@ -10,7 +10,7 @@ import { Container } from '../styles/pages/Home'
 import { useWord } from '../hooks/useWord'
 import { useWordOfDay } from '../hooks/useWordOfDay'
 
-type WordOfDay = {
+type WordOfDayData = {
   createdAt: string
   id: number
   word: string
@@ -121,8 +121,8 @@ export default function Home({
 
 export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch(`${process.env.API_URL}`)
-  const data: WordOfDay = await res.json()
-  const wordOfDay = data.word
+  const data: WordOfDayData = await res.json()
+  const wordOfDay = data.word.toLowerCase()
 
   return {
     props: {

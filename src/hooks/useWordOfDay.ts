@@ -1,6 +1,6 @@
 export function useWordOfDay() {
   function handleCorrectWordSplit(wordOfDay: string) {
-    return wordOfDay.toLowerCase().split('')
+    return wordOfDay.split('')
   }
 
   function handleCorrectWordArrayOfObject(correctWordSplit: string[]) {
