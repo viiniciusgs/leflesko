@@ -1,5 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
+import { GetStaticProps, InferGetStaticPropsType } from 'next'
 
 import Header from '../components/Header'
 import Main from '../components/Main'
@@ -9,9 +10,15 @@ import { Container } from '../styles/pages/Home'
 import { useWord } from '../hooks/useWord'
 import { useWordOfDay } from '../hooks/useWordOfDay'
 
-const mock = 'teste'
+type WordOfDay = {
+  createdAt: string
+  id: number
+  word: string
+}
 
-export default function Home() {
+export default function Home({
+  wordOfDay,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   const {
     word,
     handleSetWord,
@@ -24,7 +31,7 @@ export default function Home() {
   const { handleCorrectWordSplit, handleCorrectWordArrayOfObject } =
     useWordOfDay()
 
-  const correctWordSplit = handleCorrectWordSplit(mock)
+  const correctWordSplit = handleCorrectWordSplit(wordOfDay)
 
   const correctWordArrayOfObject =
     handleCorrectWordArrayOfObject(correctWordSplit)
@@ -83,7 +90,7 @@ export default function Home() {
         word[index][3].letter +
         word[index][4].letter
 
-      if (wordInString === mock) {
+      if (wordInString === wordOfDay) {
         console.log('palavra correta')
         handleSetFinished(true)
       } else if (index < 5) {
@@ -110,4 +117,16 @@ export default function Home() {
       </Container>
     </>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const res = await fetch(`${process.env.API_URL}`)
+  const data: WordOfDay = await res.json()
+  const wordOfDay = data.word
+
+  return {
+    props: {
+      wordOfDay,
+    },
+  }
 }
