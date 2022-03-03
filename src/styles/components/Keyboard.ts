@@ -26,6 +26,8 @@ export const Key = styled.button`
   color: ${({ theme }) => theme.colors.text};
   text-transform: uppercase;
 
+  cursor: pointer;
+
   svg path:last-child {
     fill: ${({ theme }) => theme.colors.text};
   }

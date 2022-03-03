@@ -27,7 +27,7 @@ const theme = {
     secondary: '#646464',
     tertiary: '#3F3F3F',
     success: '#B4F26F',
-    alert: '#F2EA6F',
+    alert: '#88A0F2',
     error: '#F04D58',
   },
 }
