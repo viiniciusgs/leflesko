@@ -3,79 +3,17 @@ import React, { useEffect } from 'react'
 import Row from './Row'
 
 import { useWord } from '../hooks/useWord'
-import { useWordOfDay } from '../hooks/useWordOfDay'
 
 import { Container, Letter } from '../styles/components/Main'
 
-export default function Main({ wordOfDay }: { wordOfDay: string }) {
-  const {
-    word,
-    handleSetWord,
-    index,
-    handleSetIndex,
-    finished,
-    handleSetFinished,
-  } = useWord()
-
-  const { handleCorrectWordSplit, handleCorrectWordArrayOfObject } =
-    useWordOfDay()
-
-  const correctWordSplit = handleCorrectWordSplit(wordOfDay)
-
-  const correctWordArrayOfObject =
-    handleCorrectWordArrayOfObject(correctWordSplit)
-
-  const handleSubmit = () => {
-    if (word && word[index].length === 5) {
-      for (let i = 0; i <= word[index].length - 1; i++) {
-        for (let j = 0; j <= word[index].length - 1; j++) {
-          if (
-            word[index][i].letter === correctWordArrayOfObject[j].letter &&
-            i === j
-          ) {
-            word[index][i].success = true
-            correctWordArrayOfObject[j].success = true
-          } else {
-            word[index][i].error = true
-          }
-        }
-      }
-
-      for (let i = 0; i <= word[index].length - 1; i++) {
-        for (let j = 0; j <= word[index].length - 1; j++) {
-          if (
-            word[index][i].letter === correctWordArrayOfObject[j].letter &&
-            !correctWordArrayOfObject[j].success &&
-            !correctWordArrayOfObject[j].alert &&
-            !word[index][i].success &&
-            !word[index][i].alert
-          ) {
-            word[index][i].alert = true
-            correctWordArrayOfObject[j].alert = true
-          } else {
-            word[index][i].error = true
-          }
-        }
-      }
-
-      const wordInString =
-        word[index][0].letter +
-        word[index][1].letter +
-        word[index][2].letter +
-        word[index][3].letter +
-        word[index][4].letter
-
-      if (wordInString === wordOfDay) {
-        console.log('palavra correta')
-        handleSetFinished(true)
-      } else if (index < 5) {
-        handleSetIndex(index + 1)
-      } else {
-        console.log('palavra incorreta')
-        handleSetFinished(true)
-      }
-    }
-  }
+export default function Main({
+  onSubmit,
+  onBackspace,
+}: {
+  onSubmit: () => void
+  onBackspace: () => void
+}) {
+  const { word, handleSetWord, index, finished } = useWord()
 
   const handleKeyPress = (event: KeyboardEvent) => {
     const { key, keyCode } = event
@@ -118,10 +56,10 @@ export default function Main({ wordOfDay }: { wordOfDay: string }) {
 
         handleSetWord([...word])
       }
-    } else if (keyCode === 8 && word && word[index] && word[index][0]) {
-      handleSetWord(word.slice(0, index).concat([word[index].slice(0, -1)]))
+    } else if (keyCode === 8) {
+      onBackspace()
     } else if (keyCode === 13) {
-      handleSubmit()
+      onSubmit()
     }
   }
 
