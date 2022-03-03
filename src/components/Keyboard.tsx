@@ -64,30 +64,149 @@ export default function Keyboard({
     }
   }
 
+  const handleClassName = (button: string) => {
+    for (let i = 0; i <= 4; i++) {
+      for (let j = 0; j <= 4; j++) {
+        if (word && word[i] && word[i][j]) {
+          if (word[i][j].success && word[i][j].letter === button) {
+            return 'success'
+          }
+        }
+      }
+    }
+
+    for (let i = 0; i <= 4; i++) {
+      for (let j = 0; j <= 4; j++) {
+        if (word && word[i] && word[i][j]) {
+          if (word[i][j].alert && word[i][j].letter === button) {
+            return 'alert'
+          } else if (word[i][j].error && word[i][j].letter === button) {
+            return 'error'
+          }
+        }
+      }
+    }
+  }
+
   return (
     <Container>
       <Row type="custom">
-        <Key onClick={() => handleButtonClick('q')}>q</Key>
-        <Key onClick={() => handleButtonClick('w')}>w</Key>
-        <Key onClick={() => handleButtonClick('e')}>e</Key>
-        <Key onClick={() => handleButtonClick('r')}>r</Key>
-        <Key onClick={() => handleButtonClick('t')}>t</Key>
-        <Key onClick={() => handleButtonClick('y')}>y</Key>
-        <Key onClick={() => handleButtonClick('u')}>u</Key>
-        <Key onClick={() => handleButtonClick('i')}>i</Key>
-        <Key onClick={() => handleButtonClick('o')}>o</Key>
-        <Key onClick={() => handleButtonClick('p')}>p</Key>
+        <Key
+          className={handleClassName('q')}
+          onClick={() => handleButtonClick('q')}
+        >
+          q
+        </Key>
+        <Key
+          className={handleClassName('w')}
+          onClick={() => handleButtonClick('w')}
+        >
+          w
+        </Key>
+        <Key
+          className={handleClassName('e')}
+          onClick={() => handleButtonClick('e')}
+        >
+          e
+        </Key>
+        <Key
+          className={handleClassName('r')}
+          onClick={() => handleButtonClick('r')}
+        >
+          r
+        </Key>
+        <Key
+          className={handleClassName('t')}
+          onClick={() => handleButtonClick('t')}
+        >
+          t
+        </Key>
+        <Key
+          className={handleClassName('y')}
+          onClick={() => handleButtonClick('y')}
+        >
+          y
+        </Key>
+        <Key
+          className={handleClassName('u')}
+          onClick={() => handleButtonClick('u')}
+        >
+          u
+        </Key>
+        <Key
+          className={handleClassName('i')}
+          onClick={() => handleButtonClick('i')}
+        >
+          i
+        </Key>
+        <Key
+          className={handleClassName('o')}
+          onClick={() => handleButtonClick('o')}
+        >
+          o
+        </Key>
+        <Key
+          className={handleClassName('p')}
+          onClick={() => handleButtonClick('p')}
+        >
+          p
+        </Key>
       </Row>
       <Row type="custom">
-        <Key onClick={() => handleButtonClick('a')}>a</Key>
-        <Key onClick={() => handleButtonClick('s')}>s</Key>
-        <Key onClick={() => handleButtonClick('d')}>d</Key>
-        <Key onClick={() => handleButtonClick('f')}>f</Key>
-        <Key onClick={() => handleButtonClick('g')}>g</Key>
-        <Key onClick={() => handleButtonClick('h')}>h</Key>
-        <Key onClick={() => handleButtonClick('j')}>j</Key>
-        <Key onClick={() => handleButtonClick('k')}>k</Key>
-        <Key onClick={() => handleButtonClick('l')}>l</Key>
+        <Key
+          className={handleClassName('a')}
+          onClick={() => handleButtonClick('a')}
+        >
+          a
+        </Key>
+        <Key
+          className={handleClassName('s')}
+          onClick={() => handleButtonClick('s')}
+        >
+          s
+        </Key>
+        <Key
+          className={handleClassName('d')}
+          onClick={() => handleButtonClick('d')}
+        >
+          d
+        </Key>
+        <Key
+          className={handleClassName('f')}
+          onClick={() => handleButtonClick('f')}
+        >
+          f
+        </Key>
+        <Key
+          className={handleClassName('g')}
+          onClick={() => handleButtonClick('g')}
+        >
+          g
+        </Key>
+        <Key
+          className={handleClassName('h')}
+          onClick={() => handleButtonClick('h')}
+        >
+          h
+        </Key>
+        <Key
+          className={handleClassName('j')}
+          onClick={() => handleButtonClick('j')}
+        >
+          j
+        </Key>
+        <Key
+          className={handleClassName('k')}
+          onClick={() => handleButtonClick('k')}
+        >
+          k
+        </Key>
+        <Key
+          className={handleClassName('l')}
+          onClick={() => handleButtonClick('l')}
+        >
+          l
+        </Key>
         <KeyCustom1
           onClick={() => {
             onBackspace()
@@ -97,13 +216,48 @@ export default function Keyboard({
         </KeyCustom1>
       </Row>
       <Row type="custom">
-        <Key onClick={() => handleButtonClick('z')}>z</Key>
-        <Key onClick={() => handleButtonClick('x')}>x</Key>
-        <Key onClick={() => handleButtonClick('c')}>c</Key>
-        <Key onClick={() => handleButtonClick('v')}>v</Key>
-        <Key onClick={() => handleButtonClick('b')}>b</Key>
-        <Key onClick={() => handleButtonClick('n')}>n</Key>
-        <Key onClick={() => handleButtonClick('m')}>m</Key>
+        <Key
+          className={handleClassName('z')}
+          onClick={() => handleButtonClick('z')}
+        >
+          z
+        </Key>
+        <Key
+          className={handleClassName('x')}
+          onClick={() => handleButtonClick('x')}
+        >
+          x
+        </Key>
+        <Key
+          className={handleClassName('c')}
+          onClick={() => handleButtonClick('c')}
+        >
+          c
+        </Key>
+        <Key
+          className={handleClassName('v')}
+          onClick={() => handleButtonClick('v')}
+        >
+          v
+        </Key>
+        <Key
+          className={handleClassName('b')}
+          onClick={() => handleButtonClick('b')}
+        >
+          b
+        </Key>
+        <Key
+          className={handleClassName('n')}
+          onClick={() => handleButtonClick('n')}
+        >
+          n
+        </Key>
+        <Key
+          className={handleClassName('m')}
+          onClick={() => handleButtonClick('m')}
+        >
+          m
+        </Key>
         <KeyCustom2 onClick={() => onSubmit()}>enter</KeyCustom2>
       </Row>
     </Container>

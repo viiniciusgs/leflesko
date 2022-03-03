@@ -31,6 +31,18 @@ export const Key = styled.button`
   svg path:last-child {
     fill: ${({ theme }) => theme.colors.text};
   }
+
+  &.success {
+    background: ${({ theme }) => theme.colors.success};
+  }
+
+  &.alert {
+    background: ${({ theme }) => theme.colors.alert};
+  }
+
+  &.error {
+    background: ${({ theme }) => theme.colors.error};
+  }
 `
 
 export const KeyCustom1 = styled(Key)`
