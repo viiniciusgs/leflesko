@@ -10,7 +10,7 @@
   <img src="https://img.shields.io/github/forks/viiniciusgs/leflesko?color=blue" alt="Forks">
 </p>
 
-# ℹ️ Sobre o projeto
+## ℹ️ Sobre o projeto
 
 Leflesko é baseado no Wordle, um jogo que tem como objetivo adivinhar uma palavra de cinco letras em até seis tentativas.
 
