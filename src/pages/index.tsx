@@ -128,5 +128,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       wordOfDay,
     },
+
+    revalidate: 10,
   }
 }
