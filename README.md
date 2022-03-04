@@ -22,7 +22,7 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 - [Styled Components](https://styled-components.com/)
 - [TypeScript](https://www.typescriptlang.org/pt/)
 
-## 🚀 Começando
+## 🚀 Executando localmente
 
 Clone o projeto e acesse a pasta.
 
