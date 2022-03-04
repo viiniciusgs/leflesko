@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="SpaceY" src=".github/Leflesko.png">
+  <img alt="Leflesko" src=".github/Leflesko.png">
 </p>
 
 <p align="center">
