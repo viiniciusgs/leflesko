@@ -75,3 +75,7 @@ A letra **D** não faz parte da palavra
 ## 📝 License
 
 Este projeto está licenciado sob a Licença MIT. Veja o [LICENSE](LICENSE) arquivo para detalhes.
+
+---
+
+Feito com 💙 por [Vinicius Gabriel](https://www.linkedin.com/in/viiniciusgs/) ✌️
