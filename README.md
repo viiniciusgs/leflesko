@@ -44,7 +44,7 @@ yarn dev
 
 Você pode visualizar o projeto através dos links abaixo:
 
-- [No ar](https://leflesko.vercel.app/)
+- [Vercel](https://leflesko.vercel.app/)
 
 - [Figma](https://www.figma.com/file/3YUR1QGzMmowMahmDmAfrc/Leflesko?node-id=2%3A2)
 
@@ -56,19 +56,19 @@ O objetivo do jogo é adivinhar uma palavra de cinco letras em até seis tentati
 
 <img src=".github/Example1.png" alt="Example 1">
 
-A letra **S** faz parte da palavra e está na posição correta
+A letra **"S"** faz parte da palavra e está na posição correta
 
 </br>
 
 <img src=".github/Example2.png" alt="Example 2">
 
-A letra **I** faz parte da palavra mas não está na posição correta
+A letra **"I"** faz parte da palavra mas não está na posição correta
 
 </br>
 
 <img src=".github/Example3.png" alt="Example 3">
 
-A letra **D** não faz parte da palavra
+A letra **"D"** não faz parte da palavra
 
 </br>
 
