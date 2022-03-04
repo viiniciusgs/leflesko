@@ -1,34 +1,77 @@
-# TypeScript & Styled Components Next.js example
+<p align="center">
+  <img alt="SpaceY" src=".github/Leflesko.png">
+</p>
 
-This is a really simple project that show the usage of Next.js with TypeScript and Styled Components.
+<p align="center">
+  <img src="https://img.shields.io/github/license/viiniciusgs/leflesko?color=blue" alt="License">
 
-## Preview
+  <img src="https://img.shields.io/github/stars/viiniciusgs/leflesko?color=blue" alt="Stars">
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
+  <img src="https://img.shields.io/github/forks/viiniciusgs/leflesko?color=blue" alt="Forks">
+</p>
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-typescript-styled-components)
+# ℹ️ Sobre o projeto
 
-## Deploy your own
+Leflesko é baseado no Wordle, um jogo que tem como objetivo adivinhar uma palavra de cinco letras em até seis tentativas.
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+## 🧪 Tecnologias
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-typescript-styled-components&project-name=with-typescript-styled-components&repository-name=with-typescript-styled-components)
+Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 
-## How to use it?
+- [NextJS](https://nextjs.org/)
+- [Styled Components](https://styled-components.com/)
+- [TypeScript](https://www.typescriptlang.org/pt/)
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+## 🚀 Começando
+
+Clone o projeto e acesse a pasta.
 
 ```bash
-npx create-next-app --example with-typescript-styled-components with-typescript-styled-components-app
-# or
-yarn create next-app --example with-typescript-styled-components with-typescript-styled-components-app
+git clone https://github.com/viiniciusgs/leflesko
+
+cd leflesko
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+Execute este comando para instalar as dependências e rode o projeto.
 
-## Notes
+```bash
+yarn install
 
-This is an amalgamation of the 2 existing examples:
+yarn dev
+```
 
-- [with-typescript](https://github.com/vercel/next.js/tree/canary/examples/with-typescript)
-- [with-styled-components](https://github.com/vercel/next.js/tree/canary/examples/with-styled-components)
+## 🔖 Layout
+
+Você pode visualizar o projeto através dos links abaixo:
+
+- [No ar](https://leflesko.vercel.app/)
+
+- [Figma](https://www.figma.com/file/3YUR1QGzMmowMahmDmAfrc/Leflesko?node-id=2%3A2)
+
+## 🕹️ Como jogar
+
+O objetivo do jogo é adivinhar uma palavra de cinco letras em até seis tentativas, depois de cada tentativa o jogador receberá um feedback, conforme mostrado abaixo:
+
+</br>
+
+<img src=".github/Example1.png" alt="Example 1">
+
+A letra **S** faz parte da palavra e está na posição correta
+
+</br>
+
+<img src=".github/Example2.png" alt="Example 2">
+
+A letra **I** faz parte da palavra mas não está na posição correta
+
+</br>
+
+<img src=".github/Example3.png" alt="Example 3">
+
+A letra **D** não faz parte da palavra
+
+</br>
+
+## 📝 License
+
+Este projeto está licenciado sob a Licença MIT. Veja o [LICENSE](LICENSE) arquivo para detalhes.
