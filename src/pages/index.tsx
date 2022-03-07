@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Head from 'next/head'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
 
@@ -27,6 +27,16 @@ export default function Home({
     finished,
     handleSetFinished,
   } = useWord()
+
+  useEffect(() => {
+    if (!word) {
+      const wordLocal = localStorage.getItem('word')
+
+      if (wordLocal) {
+        handleSetWord(JSON.parse(wordLocal))
+      }
+    }
+  })
 
   const { handleCorrectWordSplit, handleCorrectWordArrayOfObject } =
     useWordOfDay()
@@ -92,11 +102,13 @@ export default function Home({
 
       if (wordInString === wordOfDay) {
         console.log('palavra correta')
+        localStorage.setItem('word', JSON.stringify(word))
         handleSetFinished(true)
       } else if (index < 5) {
         handleSetIndex(index + 1)
       } else {
         console.log('palavra incorreta')
+        localStorage.setItem('word', JSON.stringify(word))
         handleSetFinished(true)
       }
     }
