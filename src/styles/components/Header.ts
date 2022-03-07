@@ -9,5 +9,9 @@ export const Container = styled.header`
     color: ${({ theme }) => theme.colors.primary};
     text-align: center;
     text-transform: uppercase;
+
+    @media screen and (max-width: 425px) {
+      font-size: ${({ theme }) => theme.fonts.sizes.md};
+    }
   }
 `

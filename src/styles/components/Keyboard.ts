@@ -43,12 +43,21 @@ export const Key = styled.button`
   &.error {
     background: ${({ theme }) => theme.colors.error};
   }
+
+  @media screen and (min-width: 1024px) {
+    width: 3rem;
+    height: 4rem;
+  }
 `
 
 export const KeyCustom1 = styled(Key)`
   width: max-content;
   padding: ${({ theme }) => theme.spacings.md};
   background: ${({ theme }) => theme.colors.tertiary};
+
+  @media screen and (min-width: 1024px) {
+    padding: ${({ theme }) => theme.spacings.lg};
+  }
 `
 
 export const KeyCustom2 = styled(KeyCustom1)`
