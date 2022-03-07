@@ -18,6 +18,7 @@ type WordOfDayData = {
 
 export default function Home({
   wordOfDay,
+  allWords,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const {
     word,
@@ -34,6 +35,7 @@ export default function Home({
 
       if (wordLocal) {
         handleSetWord(JSON.parse(wordLocal))
+        handleSetIndex(JSON.parse(wordLocal).length)
       }
     }
   })
@@ -62,37 +64,6 @@ export default function Home({
     }
 
     if (word && word[index].length === 5) {
-      for (let i = 0; i <= word[index].length - 1; i++) {
-        for (let j = 0; j <= word[index].length - 1; j++) {
-          if (
-            word[index][i].letter === correctWordArrayOfObject[j].letter &&
-            i === j
-          ) {
-            word[index][i].success = true
-            correctWordArrayOfObject[j].success = true
-          } else {
-            word[index][i].error = true
-          }
-        }
-      }
-
-      for (let i = 0; i <= word[index].length - 1; i++) {
-        for (let j = 0; j <= word[index].length - 1; j++) {
-          if (
-            word[index][i].letter === correctWordArrayOfObject[j].letter &&
-            !correctWordArrayOfObject[j].success &&
-            !correctWordArrayOfObject[j].alert &&
-            !word[index][i].success &&
-            !word[index][i].alert
-          ) {
-            word[index][i].alert = true
-            correctWordArrayOfObject[j].alert = true
-          } else {
-            word[index][i].error = true
-          }
-        }
-      }
-
       const wordInString =
         word[index][0].letter +
         word[index][1].letter +
@@ -100,17 +71,53 @@ export default function Home({
         word[index][3].letter +
         word[index][4].letter
 
-      if (wordInString === wordOfDay) {
-        console.log('palavra correta')
-        localStorage.setItem('word', JSON.stringify(word))
-        handleSetFinished(true)
-      } else if (index < 5) {
-        handleSetIndex(index + 1)
-      } else {
-        console.log('palavra incorreta')
-        localStorage.setItem('word', JSON.stringify(word))
-        handleSetFinished(true)
-      }
+      allWords.forEach((validWord: string) => {
+        if (validWord.toLowerCase() === wordInString) {
+          for (let i = 0; i <= word[index].length - 1; i++) {
+            for (let j = 0; j <= word[index].length - 1; j++) {
+              if (
+                word[index][i].letter === correctWordArrayOfObject[j].letter &&
+                i === j
+              ) {
+                word[index][i].success = true
+                correctWordArrayOfObject[j].success = true
+              } else {
+                word[index][i].error = true
+              }
+            }
+          }
+
+          for (let i = 0; i <= word[index].length - 1; i++) {
+            for (let j = 0; j <= word[index].length - 1; j++) {
+              if (
+                word[index][i].letter === correctWordArrayOfObject[j].letter &&
+                !correctWordArrayOfObject[j].success &&
+                !correctWordArrayOfObject[j].alert &&
+                !word[index][i].success &&
+                !word[index][i].alert
+              ) {
+                word[index][i].alert = true
+                correctWordArrayOfObject[j].alert = true
+              } else {
+                word[index][i].error = true
+              }
+            }
+          }
+
+          if (wordInString === wordOfDay) {
+            console.log('palavra correta')
+            localStorage.setItem('word', JSON.stringify(word))
+            handleSetFinished(true)
+          } else if (index < 5) {
+            localStorage.setItem('word', JSON.stringify(word))
+            handleSetIndex(index + 1)
+          } else {
+            console.log('palavra incorreta')
+            localStorage.setItem('word', JSON.stringify(word))
+            handleSetFinished(true)
+          }
+        }
+      })
     }
   }
 
@@ -136,9 +143,14 @@ export const getStaticProps: GetStaticProps = async () => {
   const data: WordOfDayData = await res.json()
   const wordOfDay = data.word.toLowerCase()
 
+  const resAllWords = await fetch(`${process.env.API_URL}/all`)
+  const dataAllWords = await resAllWords.json()
+  const allWords = dataAllWords.words
+
   return {
     props: {
       wordOfDay,
+      allWords,
     },
 
     revalidate: 10,
