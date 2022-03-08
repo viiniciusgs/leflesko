@@ -31,11 +31,24 @@ export default function Home({
 
   useEffect(() => {
     if (!word) {
+      const wordOfDayLocal = localStorage.getItem('wordOfDay')
       const wordLocal = localStorage.getItem('word')
+      const finishedLocal = localStorage.getItem('finished')
+
+      if (wordOfDayLocal !== wordOfDay) {
+        localStorage.removeItem('word')
+        localStorage.removeItem('finished')
+        return
+      }
 
       if (wordLocal) {
         handleSetWord(JSON.parse(wordLocal))
-        handleSetIndex(JSON.parse(wordLocal).length)
+
+        if (!JSON.parse(finishedLocal as string)) {
+          handleSetIndex(JSON.parse(wordLocal).length)
+        } else {
+          handleSetFinished(true)
+        }
       }
     }
   })
@@ -63,7 +76,9 @@ export default function Home({
       return
     }
 
-    if (word && word[index].length === 5) {
+    localStorage.setItem('wordOfDay', wordOfDay)
+
+    if (word && word[index] && word[index].length === 5) {
       const wordInString =
         word[index][0].letter +
         word[index][1].letter +
@@ -107,6 +122,7 @@ export default function Home({
           if (wordInString === wordOfDay) {
             console.log('palavra correta')
             localStorage.setItem('word', JSON.stringify(word))
+            localStorage.setItem('finished', JSON.stringify(true))
             handleSetFinished(true)
           } else if (index < 5) {
             localStorage.setItem('word', JSON.stringify(word))
@@ -114,6 +130,7 @@ export default function Home({
           } else {
             console.log('palavra incorreta')
             localStorage.setItem('word', JSON.stringify(word))
+            localStorage.setItem('finished', JSON.stringify(true))
             handleSetFinished(true)
           }
         }
