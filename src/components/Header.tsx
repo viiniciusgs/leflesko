@@ -1,11 +1,11 @@
 import React from 'react'
 
-import { Container } from '../styles/components/Header'
+import { StyledHeader } from '../styles/components/Header'
 
 export default function Header() {
   return (
-    <Container>
+    <StyledHeader>
       <h1>Leflesko</h1>
-    </Container>
+    </StyledHeader>
   )
 }

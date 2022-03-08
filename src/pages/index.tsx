@@ -1,67 +1,57 @@
 import React, { useEffect } from 'react'
-import Head from 'next/head'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
+import Head from 'next/head'
 
 import Header from '../components/Header'
 import Main from '../components/Main'
 import Keyboard from '../components/Keyboard'
 
-import { Container } from '../styles/pages/Home'
 import { useWord } from '../hooks/useWord'
 import { useWordOfDay } from '../hooks/useWordOfDay'
 
-type WordOfDayData = {
-  createdAt: string
-  id: number
-  word: string
-}
+import { Container } from '../styles/pages/Home'
 
 export default function Home({
   wordOfDay,
-  allWords,
+  validWords,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const {
-    word,
-    handleSetWord,
-    index,
-    handleSetIndex,
-    finished,
-    handleSetFinished,
-  } = useWord()
+  const { word, handleWord, index, handleIndex, finished, handleFinished } =
+    useWord()
 
   useEffect(() => {
-    const wordOfDayLocal = localStorage.getItem('wordOfDay')
-    const wordLocal = localStorage.getItem('word')
-    const finishedLocal = localStorage.getItem('finished')
+    const solution = localStorage.getItem('solution')
+    const tries = localStorage.getItem('tries')
 
-    if (wordOfDayLocal !== wordOfDay) {
-      localStorage.removeItem('word')
+    if (solution !== wordOfDay) {
+      localStorage.removeItem('tries')
       localStorage.removeItem('finished')
-      localStorage.setItem('wordOfDay', wordOfDay)
-      handleSetWord([[]])
-      handleSetIndex(0)
-      handleSetFinished(false)
+      localStorage.setItem('solution', wordOfDay)
+      handleWord([[]])
+      handleIndex(0)
+      handleFinished(false)
+
       return
     }
 
-    if (wordLocal) {
-      handleSetWord(JSON.parse(wordLocal))
+    if (tries) {
+      const triedWords = JSON.parse(tries)
+      const triedIndex = JSON.parse(tries).length
+      const finishedLocal = localStorage.getItem('finished')
+      const isFinished = JSON.parse(finishedLocal as string)
 
-      if (!JSON.parse(finishedLocal as string)) {
-        handleSetIndex(JSON.parse(wordLocal).length)
+      handleWord(triedWords)
+
+      if (!isFinished) {
+        handleIndex(triedIndex)
       } else {
-        handleSetFinished(true)
+        handleFinished(true)
       }
     }
   }, [])
 
-  const { handleCorrectWordSplit, handleCorrectWordArrayOfObject } =
-    useWordOfDay()
+  const { handleWordOfDay } = useWordOfDay()
 
-  const correctWordSplit = handleCorrectWordSplit(wordOfDay)
-
-  const correctWordArrayOfObject =
-    handleCorrectWordArrayOfObject(correctWordSplit)
+  const solution = handleWordOfDay(wordOfDay)
 
   function handleBackspace() {
     if (finished) {
@@ -69,7 +59,11 @@ export default function Home({
     }
 
     if (word && word[index] && word[index][0]) {
-      handleSetWord(word.slice(0, index).concat([word[index].slice(0, -1)]))
+      const deletedLetter = word
+        .slice(0, index)
+        .concat([word[index].slice(0, -1)])
+
+      handleWord(deletedLetter)
     }
   }
 
@@ -86,18 +80,15 @@ export default function Home({
         word[index][3].letter +
         word[index][4].letter
 
-      allWords.forEach((validWord: string) => {
-        if (validWord.toLowerCase() === wordInString) {
+      validWords.forEach((element: string) => {
+        const validWord = element.toLowerCase()
+
+        if (validWord === wordInString) {
           for (let i = 0; i <= word[index].length - 1; i++) {
             for (let j = 0; j <= word[index].length - 1; j++) {
-              if (
-                word[index][i].letter === correctWordArrayOfObject[j].letter &&
-                i === j
-              ) {
+              if (word[index][i].letter === solution[j].letter && i === j) {
                 word[index][i].success = true
-                correctWordArrayOfObject[j].success = true
-              } else {
-                word[index][i].error = true
+                solution[j].success = true
               }
             }
           }
@@ -105,14 +96,14 @@ export default function Home({
           for (let i = 0; i <= word[index].length - 1; i++) {
             for (let j = 0; j <= word[index].length - 1; j++) {
               if (
-                word[index][i].letter === correctWordArrayOfObject[j].letter &&
-                !correctWordArrayOfObject[j].success &&
-                !correctWordArrayOfObject[j].alert &&
+                word[index][i].letter === solution[j].letter &&
+                !solution[j].success &&
+                !solution[j].alert &&
                 !word[index][i].success &&
                 !word[index][i].alert
               ) {
                 word[index][i].alert = true
-                correctWordArrayOfObject[j].alert = true
+                solution[j].alert = true
               } else {
                 word[index][i].error = true
               }
@@ -121,18 +112,19 @@ export default function Home({
 
           if (wordInString === wordOfDay) {
             console.log('palavra correta')
-            localStorage.setItem('word', JSON.stringify(word))
+
             localStorage.setItem('finished', JSON.stringify(true))
-            handleSetFinished(true)
+            handleFinished(true)
           } else if (index < 5) {
-            localStorage.setItem('word', JSON.stringify(word))
-            handleSetIndex(index + 1)
+            handleIndex(index + 1)
           } else {
             console.log('palavra incorreta')
-            localStorage.setItem('word', JSON.stringify(word))
+
             localStorage.setItem('finished', JSON.stringify(true))
-            handleSetFinished(true)
+            handleFinished(true)
           }
+
+          localStorage.setItem('tries', JSON.stringify(word))
         }
       })
     }
@@ -157,17 +149,17 @@ export default function Home({
 
 export const getStaticProps: GetStaticProps = async () => {
   const res = await fetch(`${process.env.API_URL}`)
-  const data: WordOfDayData = await res.json()
-  const wordOfDay = data.word.toLowerCase()
+  const data = await res.json()
+  const wordOfDay: string = data.word.toLowerCase()
 
-  const resAllWords = await fetch(`${process.env.API_URL}/all`)
-  const dataAllWords = await resAllWords.json()
-  const allWords = dataAllWords.words
+  const resValidWords = await fetch(`${process.env.API_URL}/all`)
+  const dataValidWords = await resValidWords.json()
+  const validWords: string[] = dataValidWords.words
 
   return {
     props: {
       wordOfDay,
-      allWords,
+      validWords,
     },
 
     revalidate: 10,

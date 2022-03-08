@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Container, ContainerCustom } from '../styles/components/Row'
+import { StyledRow, StyledRowCustom } from '../styles/components/Row'
 
 export default function Row({
   children,
@@ -11,8 +11,8 @@ export default function Row({
 }) {
   switch (type) {
     case 'custom':
-      return <ContainerCustom>{children}</ContainerCustom>
+      return <StyledRowCustom>{children}</StyledRowCustom>
     default:
-      return <Container>{children}</Container>
+      return <StyledRow>{children}</StyledRow>
   }
 }

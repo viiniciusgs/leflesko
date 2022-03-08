@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
+export const StyledRow = styled.div`
   display: flex;
   gap: ${({ theme }) => theme.spacings.md};
 
@@ -9,6 +9,6 @@ export const Container = styled.div`
   }
 `
 
-export const ContainerCustom = styled(Container)`
+export const StyledRowCustom = styled(StyledRow)`
   gap: ${({ theme }) => theme.spacings.sm};
 `

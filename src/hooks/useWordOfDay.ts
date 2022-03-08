@@ -1,37 +1,35 @@
 export function useWordOfDay() {
-  function handleCorrectWordSplit(wordOfDay: string) {
-    return wordOfDay.split('')
-  }
+  function handleWordOfDay(element: string) {
+    const word = element.split('')
 
-  function handleCorrectWordArrayOfObject(correctWordSplit: string[]) {
     return [
       {
-        letter: correctWordSplit[0],
+        letter: word[0],
         success: false,
         alert: false,
       },
       {
-        letter: correctWordSplit[1],
+        letter: word[1],
         success: false,
         alert: false,
       },
       {
-        letter: correctWordSplit[2],
+        letter: word[2],
         success: false,
         alert: false,
       },
       {
-        letter: correctWordSplit[3],
+        letter: word[3],
         success: false,
         alert: false,
       },
       {
-        letter: correctWordSplit[4],
+        letter: word[4],
         success: false,
         alert: false,
       },
     ]
   }
 
-  return { handleCorrectWordSplit, handleCorrectWordArrayOfObject }
+  return { handleWordOfDay }
 }

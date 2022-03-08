@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Container = styled.header`
+export const StyledHeader = styled.header`
   padding: ${({ theme }) => theme.spacings.md};
 
   h1 {
