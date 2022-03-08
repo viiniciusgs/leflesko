@@ -30,28 +30,30 @@ export default function Home({
   } = useWord()
 
   useEffect(() => {
-    if (!word) {
-      const wordOfDayLocal = localStorage.getItem('wordOfDay')
-      const wordLocal = localStorage.getItem('word')
-      const finishedLocal = localStorage.getItem('finished')
+    const wordOfDayLocal = localStorage.getItem('wordOfDay')
+    const wordLocal = localStorage.getItem('word')
+    const finishedLocal = localStorage.getItem('finished')
 
-      if (wordOfDayLocal !== wordOfDay) {
-        localStorage.removeItem('word')
-        localStorage.removeItem('finished')
-        return
-      }
+    if (wordOfDayLocal !== wordOfDay) {
+      localStorage.removeItem('word')
+      localStorage.removeItem('finished')
+      localStorage.setItem('wordOfDay', wordOfDay)
+      handleSetWord([[]])
+      handleSetIndex(0)
+      handleSetFinished(false)
+      return
+    }
 
-      if (wordLocal) {
-        handleSetWord(JSON.parse(wordLocal))
+    if (wordLocal) {
+      handleSetWord(JSON.parse(wordLocal))
 
-        if (!JSON.parse(finishedLocal as string)) {
-          handleSetIndex(JSON.parse(wordLocal).length)
-        } else {
-          handleSetFinished(true)
-        }
+      if (!JSON.parse(finishedLocal as string)) {
+        handleSetIndex(JSON.parse(wordLocal).length)
+      } else {
+        handleSetFinished(true)
       }
     }
-  })
+  }, [])
 
   const { handleCorrectWordSplit, handleCorrectWordArrayOfObject } =
     useWordOfDay()
@@ -75,8 +77,6 @@ export default function Home({
     if (finished) {
       return
     }
-
-    localStorage.setItem('wordOfDay', wordOfDay)
 
     if (word && word[index] && word[index].length === 5) {
       const wordInString =

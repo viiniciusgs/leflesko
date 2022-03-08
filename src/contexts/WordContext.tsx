@@ -8,7 +8,7 @@ type Word = {
 }
 
 type WordContextType = {
-  word: Word[][] | null
+  word: Word[][]
   handleSetWord: (value: Word[][]) => void
   index: number
   handleSetIndex: (value: number) => void
@@ -19,7 +19,7 @@ type WordContextType = {
 export const WordContext = createContext({} as WordContextType)
 
 export function WordProvider({ children }: { children: React.ReactNode }) {
-  const [word, setWord] = useState<Word[][] | null>(null)
+  const [word, setWord] = useState<Word[][]>([[]])
   const [index, setIndex] = useState<number>(0)
   const [finished, setFinished] = useState<boolean>(false)
 
