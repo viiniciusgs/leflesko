@@ -39,6 +39,7 @@ export default class MyDocument extends Document {
       <Html lang="pt-br">
         <Head>
           <meta charSet="utf-8" />
+          <link rel="icon" href="/favicon.ico" />
           <link
             href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;600;700&display=swap"
             rel="stylesheet"
