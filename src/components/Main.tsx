@@ -31,9 +31,7 @@ export default function Main({
   useEffect(() => {
     window.addEventListener('keydown', handleKeyPress)
 
-    return () => {
-      window.removeEventListener('keydown', handleKeyPress)
-    }
+    return () => window.removeEventListener('keydown', handleKeyPress)
   }, [handleKeyPress])
 
   return (

@@ -3,7 +3,7 @@ import React from 'react'
 import Row from './Row'
 import Button from './Button'
 
-import BackspaceSVG from '../assets/backspace.svg'
+import { MdOutlineBackspace } from 'react-icons/md'
 
 import { StyledKeyboard } from '../styles/components/Keyboard'
 import {
@@ -48,7 +48,7 @@ export default function Keyboard({
             onBackspace()
           }}
         >
-          <BackspaceSVG />
+          <MdOutlineBackspace />
         </StyledButtonCustom1>
       </Row>
 

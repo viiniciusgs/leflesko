@@ -41,7 +41,7 @@ export default class MyDocument extends Document {
           <meta charSet="utf-8" />
           <link rel="icon" href="/favicon.ico" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;600;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Oswald:wght@300;600;700&display=swap"
             rel="stylesheet"
           />
         </Head>

@@ -3,6 +3,7 @@ const theme = {
     sm: '0.25rem',
     md: '0.5rem',
     lg: '1rem',
+    xl: '2rem',
   },
   radius: {
     sm: '0.25rem',
@@ -10,6 +11,8 @@ const theme = {
   },
   fonts: {
     sizes: {
+      xxs: '0.875rem',
+      xs: '1rem',
       sm: '1.5rem',
       md: '2rem',
       lg: '2.5rem',
