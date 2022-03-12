@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const StyledModal = styled.div`
   width: 100%;
   height: 100%;
-  padding: ${({ theme }) => theme.spacings.xlg};
+  padding: ${({ theme }) => theme.spacings.xl};
 
   display: flex;
   align-items: center;
