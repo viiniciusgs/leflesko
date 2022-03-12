@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 export const StyledModal = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   padding: ${({ theme }) => theme.spacings.xl};
 
   display: flex;
@@ -11,13 +11,15 @@ export const StyledModal = styled.div`
 
   background: rgba(0, 0, 0, 0.5);
 
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   z-index: 1;
 `
 
 export const StyledModalContent = styled.section`
+  max-height: 100%;
+  height: max-content;
   padding: ${({ theme }) => theme.spacings.xl}
     ${({ theme }) => theme.spacings.lg};
   border-radius: ${({ theme }) => theme.radius.md};
@@ -27,6 +29,8 @@ export const StyledModalContent = styled.section`
   gap: ${({ theme }) => theme.spacings.lg};
 
   background: ${({ theme }) => theme.colors.background};
+
+  overflow-y: auto;
 `
 
 export const StyledModalText = styled.p`

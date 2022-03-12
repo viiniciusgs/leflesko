@@ -9,7 +9,7 @@ import Modal from './Modal'
 import { StyledHeader, StyledButton } from '../styles/components/Header'
 
 export default function Header() {
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(true)
 
   function handleShowModal() {
     if (showModal) {

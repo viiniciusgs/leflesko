@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 export const StyledHeader = styled.header`
   width: 100%;
-  padding: ${({ theme }) => theme.spacings.md} 0;
+  padding: ${({ theme }) => theme.spacings.md}
+    ${({ theme }) => theme.spacings.lg};
   display: flex;
   align-items: center;
   justify-content: space-between;
