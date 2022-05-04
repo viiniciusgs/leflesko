@@ -26,9 +26,4 @@ export const StyledLetter = styled.div`
   &.error {
     border-color: ${({ theme }) => theme.colors.error};
   }
-
-  @media screen and (min-width: 1024px) {
-    width: 4.5rem;
-    height: 4.5rem;
-  }
 `
