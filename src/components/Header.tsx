@@ -6,16 +6,26 @@ import { GoMarkGithub } from 'react-icons/go'
 
 import Modal from './Modal'
 
+import { useWord } from '../hooks/useWord'
+
 import { StyledHeader, StyledButton } from '../styles/components/Header'
 
 export default function Header() {
   const [showModal, setShowModal] = useState(true)
+
+  const { finished } = useWord()
 
   function handleShowModal() {
     if (showModal) {
       setShowModal(!showModal)
     }
   }
+
+  useEffect(() => {
+    if (finished) {
+      setShowModal(false)
+    }
+  })
 
   useEffect(() => {
     window.addEventListener('click', handleShowModal)
