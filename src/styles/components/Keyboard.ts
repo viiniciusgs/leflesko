@@ -7,4 +7,8 @@ export const StyledKeyboard = styled.div`
   flex-direction: column;
   align-items: center;
   gap: ${({ theme }) => theme.spacings.md};
+
+  &.disabled {
+    pointer-events: none;
+  }
 `

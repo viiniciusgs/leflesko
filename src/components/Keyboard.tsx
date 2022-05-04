@@ -5,6 +5,8 @@ import Button from './Button'
 
 import { MdOutlineBackspace } from 'react-icons/md'
 
+import { useWord } from '../hooks/useWord'
+
 import { StyledKeyboard } from '../styles/components/Keyboard'
 import {
   StyledButtonCustom1,
@@ -18,8 +20,10 @@ export default function Keyboard({
   onSubmit: () => void
   onBackspace: () => void
 }) {
+  const { finished } = useWord()
+
   return (
-    <StyledKeyboard>
+    <StyledKeyboard className={`${finished && 'disabled'}`}>
       <Row type="custom">
         <Button letter="q" />
         <Button letter="w" />
