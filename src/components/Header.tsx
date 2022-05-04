@@ -25,7 +25,7 @@ export default function Header() {
     if (finished) {
       setShowModal(false)
     }
-  })
+  }, [finished])
 
   useEffect(() => {
     window.addEventListener('click', handleShowModal)
